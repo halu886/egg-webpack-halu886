@@ -1,6 +1,7 @@
-'use strict';
+// 'use strict';
 const webpack = require('webpack');
 const MemoryFS = require('memory-fs');
+const path = require('path');
 
 const fs = new MemoryFS();
 
@@ -20,14 +21,26 @@ module.exports = class TujiWebpack {
       }
       this.isBuild = true;
     });
-    // this.compiler.outputFileSystem = fs;
+    this.compile.outputFileSystem = fs;
   }
 
-  async getBulder(outPath) {
+  getBulder(filePath) {
     if (!this.isBuild) {
-      this.logger.warming('waiting...build ing~');
+      this.logger.warm('waiting...build ing~');
       return {};
     }
-    return this.compiler.outputFileSystem.readFileSync(outPath);
+    // const pathObject = path.parse(filePath);
+    // const pathDirName = pathObject.dir + '/' + pathObject.name;
+    // let entryKey = '';
+    // const entry = this.options.entry;
+    // for (const key in entry) {
+    //   if (entry[key].include(pathDirName)) {
+    //     entryKey = key;
+    //   }
+    // }
+    const appRoot = this.app.baseDir;
+    console.log(path.join(appRoot, 'dist', filePath));
+    const contentString = this.compile.outputFileSystem.readFileSync(path.join(appRoot, 'dist', filePath), 'utf-8');
+    return contentString;
   }
 };

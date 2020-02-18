@@ -5,7 +5,6 @@ const TujiWebpack = require('../lib/tujiWebpack');
 
 module.exports = {
   get webpack() {
-    this.logger.info('test');
     if (this[WEBPACK]) {
       return this[WEBPACK];
     }
