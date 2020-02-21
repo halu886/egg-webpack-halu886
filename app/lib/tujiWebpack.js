@@ -39,7 +39,7 @@ module.exports = class TujiWebpack {
     //   }
     // }
     const appRoot = this.app.baseDir;
-    console.log(path.join(appRoot, 'dist', filePath));
+    // console.log(path.join(appRoot, 'dist', filePath));
     const contentString = this.compile.outputFileSystem.readFileSync(path.join(appRoot, 'dist', filePath), 'utf-8');
     return contentString;
   }
