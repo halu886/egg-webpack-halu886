@@ -10,7 +10,9 @@ module.exports = class TujiWebpack {
     this.app = app;
     this.options = app.config.webpack;
     this.isBuild = false;
+    this.isClientBuild = false;
     this.build();
+    this.clientBuiler()
   }
 
   build() {
@@ -29,18 +31,26 @@ module.exports = class TujiWebpack {
       this.logger.warm('waiting...build ing~');
       return {};
     }
-    // const pathObject = path.parse(filePath);
-    // const pathDirName = pathObject.dir + '/' + pathObject.name;
-    // let entryKey = '';
-    // const entry = this.options.entry;
-    // for (const key in entry) {
-    //   if (entry[key].include(pathDirName)) {
-    //     entryKey = key;
-    //   }
-    // }
     const appRoot = this.app.baseDir;
-    // console.log(path.join(appRoot, 'dist', filePath));
     const contentString = this.compile.outputFileSystem.readFileSync(path.join(appRoot, 'dist', filePath), 'utf-8');
+    return contentString;
+  }
+
+  clientBuiler() {
+    console.log(this.app.config.clientWebpack);
+    this.clientCompile = webpack(this.app.config.clientWebpack, err => {
+      if (err) {
+        this.app.logger.error(err);
+        return;
+      }
+      this.isClientBuild = true;
+    });
+    this.clientCompile.outputFileSystem = fs;
+  }
+
+  getClientBulder() {
+    const appRoot = this.app.baseDir;
+    const contentString = this.compile.outputFileSystem.readFileSync(path.join(appRoot, 'dist', 'vue-ssr-client-manifest.json'), 'utf-8');
     return contentString;
   }
 };
