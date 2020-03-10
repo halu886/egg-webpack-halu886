@@ -12,7 +12,7 @@ module.exports = class TujiWebpack {
     this.isBuild = false;
     this.isClientBuild = false;
     this.build();
-    this.clientBuiler()
+    this.clientBuiler();
   }
 
   build() {
@@ -45,12 +45,12 @@ module.exports = class TujiWebpack {
       }
       this.isClientBuild = true;
     });
-    this.clientCompile.outputFileSystem = fs;
+    // this.clientCompile.outputFileSystem = fs;
   }
 
   getClientBulder() {
     const appRoot = this.app.baseDir;
-    const contentString = this.compile.outputFileSystem.readFileSync(path.join(appRoot, 'dist', 'vue-ssr-client-manifest.json'), 'utf-8');
-    return contentString;
+    const contentString = require('fs').readFileSync(path.join(appRoot, 'dist', 'vue-ssr-client-manifest.json'), 'utf-8');
+    return JSON.parse(contentString);
   }
 };
