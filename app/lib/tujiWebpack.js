@@ -29,15 +29,6 @@ module.exports = class TujiWebpack {
       this.logger.warm('waiting...build ing~');
       return {};
     }
-    // const pathObject = path.parse(filePath);
-    // const pathDirName = pathObject.dir + '/' + pathObject.name;
-    // let entryKey = '';
-    // const entry = this.options.entry;
-    // for (const key in entry) {
-    //   if (entry[key].include(pathDirName)) {
-    //     entryKey = key;
-    //   }
-    // }
     const appRoot = this.app.baseDir;
     // console.log(path.join(appRoot, 'dist', filePath));
     const contentString = this.compile.outputFileSystem.readFileSync(path.join(appRoot, 'dist', filePath), 'utf-8');
