@@ -20,8 +20,12 @@
     "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.9.0",
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
+    "babel-loader": "^8.1.0",
     "egg": "^2.16.0",
     "egg-bin": "^4.11.0",
     "egg-ci": "^1.11.0",
@@ -32,7 +36,7 @@
     "less-loader": "^5.0.0",
     "vue-loader": "^15.8.3",
     "vue-template-compiler": "^2.6.11",
-    "webpack": "^4.41.5",
+    "webpack": "^4.42.0",
     "webpack-cli": "^3.3.10"
   },
   "engines": {

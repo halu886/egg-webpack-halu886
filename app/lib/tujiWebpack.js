@@ -28,7 +28,7 @@ module.exports = class TujiWebpack {
 
   getBulder(filePath) {
     if (!this.isBuild) {
-      this.logger.warm('waiting...build ing~');
+      this.app.logger.warm('waiting...build ing~');
       return {};
     }
     const appRoot = this.app.baseDir;
