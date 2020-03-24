@@ -23,7 +23,7 @@ module.exports = class TujiWebpack {
       }
       this.isBuild = true;
     });
-    this.compile.outputFileSystem = fs;
+    // this.compile.outputFileSystem = fs;
   }
 
   getBulder(filePath) {
@@ -32,12 +32,12 @@ module.exports = class TujiWebpack {
       return {};
     }
     const appRoot = this.app.baseDir;
-    const contentString = this.compile.outputFileSystem.readFileSync(path.join(appRoot, 'dist', filePath), 'utf-8');
+    const contentString = require('fs').readFileSync(path.join(appRoot, 'dist', filePath), 'utf-8');
+    // const contentString = this.compile.outputFileSystem.readFileSync(path.join(appRoot, 'dist', filePath), 'utf-8');
     return contentString;
   }
 
   clientBuiler() {
-    console.log(this.app.config.clientWebpack);
     this.clientCompile = webpack(this.app.config.clientWebpack, err => {
       if (err) {
         this.app.logger.error(err);
