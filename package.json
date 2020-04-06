@@ -1,6 +1,6 @@
 {
   "name": "egg-webpack-tuji",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "the plugin of pc-4.0 for build webpack bunlder",
   "eggPlugin": {
     "name": "webpackTuji"
