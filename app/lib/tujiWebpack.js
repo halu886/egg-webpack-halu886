@@ -28,19 +28,19 @@ module.exports = class TujiWebpack {
 
   getBulder(filePath) {
     if (!this.isBuild) {
-      this.app.logger.warm('waiting...build ing~');
+      this.app.ctx.logger.warm('waiting...build ing~');
       return {};
     }
     const appRoot = this.app.baseDir;
-    const contentString = require('fs').readFileSync(path.join(appRoot, 'dist', filePath), 'utf-8');
-    // const contentString = this.compile.outputFileSystem.readFileSync(path.join(appRoot, 'dist', filePath), 'utf-8');
+    // const contentString = require('fs').readFileSync(path.join(appRoot, 'dist', filePath), 'utf-8');
+    const contentString = this.compile.outputFileSystem.readFileSync(path.join(appRoot, 'dist', filePath), 'utf-8');
     return contentString;
   }
 
   clientBuiler() {
     this.clientCompile = webpack(this.app.config.clientWebpack, err => {
       if (err) {
-        this.app.logger.error(err);
+        this.app.ctx.logger.error(err);
         return;
       }
       this.isClientBuild = true;
